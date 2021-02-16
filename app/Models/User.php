@@ -34,6 +34,19 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Get the authenticated User.
+     *
+     * @return object
+     */
+    public function getData()
+    {
+        return [
+            'name' => auth()->user()->name,
+            'email' => auth()->user()->email
+        ];
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
