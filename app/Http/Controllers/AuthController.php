@@ -34,8 +34,10 @@ class AuthController extends Controller
             ], 401);
         }
 
+        $user = new User;
+
         return response([
-            'data' => $this->getUser(),
+            'data' => $user->getData(),
             'meta' => $this->respondWithToken($token),
         ],200);
     }
@@ -63,8 +65,10 @@ class AuthController extends Controller
 
         $token = auth()->attempt($input);
 
+        $user = new User;
+
         return response()->json([
-            'data' => $this->getUser(),
+            'data' => $user->getData(),
             'meta' => $this->respondWithToken($token),
         ],200);
     }
@@ -88,22 +92,11 @@ class AuthController extends Controller
      */
     public function me()
     {
-        return response([
-            'data' => $this->getUser(),
-        ],200);
-    }
+        $user = new User;
 
-    /**
-     * Get the authenticated User.
-     *
-     * @return object
-     */
-    public function getUser()
-    {
-        return [
-            'name' => auth()->user()->name,
-            'email' => auth()->user()->email
-        ];
+        return response([
+            'data' => $user->getData(),
+        ],200);
     }
 
     /**
