@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Transformers\ErrorTransformer;
+use App\Transformers\UserTransformer;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -29,17 +32,26 @@ class AuthController extends Controller
         $token = null;
 
         if (!$token = auth()->attempt($input)) {
-            return response([
-                'errors' => 'Invalid Email or Password',
-            ], 401);
+            if(!User::where('email', $request->email)->first()){
+                return response([
+                    "message"=> "The given data was invalid.",
+                    "errors"=>
+                    ["email"=> "The email do not match our records."]
+                ], 401);
+            }else{
+                return response([
+                    "message"=> "The given data was invalid.",
+                    "errors"=>
+                    ["password"=> "The password do not match our records."]
+                ], 401);
+            }
         }
 
-        $user = new User;
+        $user = auth()->user();
 
-        return response([
-            'data' => $user->getData(),
-            'meta' => $this->respondWithToken($token),
-        ],200);
+        return fractal($user, new UserTransformer())
+        ->addMeta($this->respondWithToken($token))
+        ->respond(200);
     }
 
     /**
@@ -65,12 +77,11 @@ class AuthController extends Controller
 
         $token = auth()->attempt($input);
 
-        $user = new User;
+        $user = auth()->user();
 
-        return response()->json([
-            'data' => $user->getData(),
-            'meta' => $this->respondWithToken($token),
-        ],200);
+        return fractal($user, new UserTransformer())
+        ->addMeta($this->respondWithToken($token))
+        ->respond(201);
     }
 
     /**
@@ -92,11 +103,10 @@ class AuthController extends Controller
      */
     public function me()
     {
-        $user = new User;
+        $user = auth()->user();
 
-        return response([
-            'data' => $user->getData(),
-        ],200);
+        return fractal($user, new UserTransformer())
+        ->respond(200);
     }
 
     /**
