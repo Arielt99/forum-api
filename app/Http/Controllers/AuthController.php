@@ -34,13 +34,11 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($input)) {
             if(!User::where('email', $request->email)->first()){
                 return response([
-                    "message"=> "The given data was invalid.",
                     "errors"=>
                     ["email"=> "The email do not match our records."]
                 ], 401);
             }else{
                 return response([
-                    "message"=> "The given data was invalid.",
                     "errors"=>
                     ["password"=> "The password do not match our records."]
                 ], 401);
