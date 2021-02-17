@@ -62,4 +62,12 @@ class User extends Authenticatable implements JWTSubject
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get all of the threads of a user.
+     */
+    public function threads()
+    {
+        return $this->hasMany(Thread::class);
+    }
 }
