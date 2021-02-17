@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\ThreadController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,14 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::get('/threads/{id}',[ThreadController::class,'show']);
         Route::delete('/threads/{id}',[ThreadController::class,'destroy']);
         Route::put('/threads/{id}',[ThreadController::class,'update']);
+    });
+
+    //reply
+    Route::group(['namespace'=>'Reply'], function () {
+        Route::post('/threads/{ThreadId}/replies', [ReplyController::class, 'store']);
+        Route::get('/threads/{ThreadId}/replies/{ReplyId}', [ReplyController::class, 'show']);
+        Route::delete('/threads/{ThreadId}/replies/{ReplyId}', [ReplyController::class, 'destroy']);
+        Route::put('/threads/{ThreadId}/replies/{ReplyId}', [ReplyController::class, 'update']);
     });
 
 });

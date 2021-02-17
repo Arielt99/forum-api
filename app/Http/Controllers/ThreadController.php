@@ -21,11 +21,12 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 
     /**
-     * Display one of the task of the user.
+     * Display one of the threads.
      *
      * @param  Request  $request
      * @return Response
@@ -36,6 +37,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 
@@ -85,6 +87,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 
@@ -118,6 +121,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 

@@ -49,6 +49,14 @@ class Thread extends Model
     }
 
     /**
+     * Get all the reply of a thread.
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
+    /**
      * Making an unique slug.
      */
     public function sluging()
