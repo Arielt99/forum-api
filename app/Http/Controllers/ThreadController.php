@@ -21,6 +21,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 
@@ -36,6 +37,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 
@@ -85,6 +87,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 
@@ -118,6 +121,7 @@ class ThreadController extends Controller
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
+        ->includeReplies()
         ->respond(200);
     }
 

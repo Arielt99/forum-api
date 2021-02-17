@@ -22,7 +22,7 @@ class ThreadTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        'channel'
+        'channel', 'replies'
     ];
 
     /**
@@ -64,5 +64,18 @@ class ThreadTransformer extends TransformerAbstract
         $channel = $thread->channel;
 
         return $this->item($channel, new ChannelTransformer());
+    }
+
+    /**
+     * Include reply
+     *
+     * @param Thread $thread
+     * @return \League\Fractal\Resource\Item
+     */
+    public function includeReplies(Thread $thread)
+    {
+        $replies = $thread->replies;
+
+        return $this->collection($replies, new ReplyTransformer());
     }
 }
