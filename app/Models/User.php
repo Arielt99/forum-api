@@ -70,4 +70,12 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Thread::class);
     }
+
+    /**
+     * Get all of the replies of a user.
+     */
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
 }

@@ -13,7 +13,7 @@ class ReplyTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'thread'
+        'user','thread'
     ];
 
     /**
@@ -41,9 +41,22 @@ class ReplyTransformer extends TransformerAbstract
     }
 
     /**
-     * Reply $reply
+     * Include user
      *
      * @param Thread $thread
+     * @return \League\Fractal\Resource\Item
+     */
+    public function includeUser(Reply $reply)
+    {
+        $user = $reply->user;
+
+        return $this->item($user, new UserTransformer());
+    }
+
+    /**
+     * Include thread
+     *
+     * @param Reply $reply
      * @return \League\Fractal\Resource\Item
      */
     public function includeThread(Reply $reply)

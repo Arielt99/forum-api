@@ -18,6 +18,7 @@ class Reply extends Model
      */
     protected $fillable = [
         'body',
+        'thread_id'
     ];
     /**
      * Get the user that owns the reply.

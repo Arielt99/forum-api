@@ -26,7 +26,7 @@ class ThreadController extends Controller
     }
 
     /**
-     * Display one of the task of the user.
+     * Display one of the threads.
      *
      * @param  Request  $request
      * @return Response
