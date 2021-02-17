@@ -10,16 +10,6 @@ class Thread extends Model
 {
     use HasFactory;
 
-
-
-    protected static function boot() {
-        parent::boot();
-
-        static::creating(function ($thread) {
-            $thread->slug = Str::slug($thread->title);
-        });
-    }
-
     /**
      * The attributes that are mass assignable.
      *
@@ -56,5 +46,15 @@ class Thread extends Model
     public function channel()
     {
         return $this->belongsTo(Channel::class);
+    }
+
+    /**
+     * Making an unique slug.
+     */
+    public function sluging()
+    {
+        $slug = Str::slug($this->title.$this->id);
+
+        $this->slug = $slug;
     }
 }

@@ -42,6 +42,7 @@ Route::group(['middleware' => 'auth:api'], function(){
         Route::post('/threads', [ThreadController::class, 'store']);
         Route::get('/threads/{id}',[ThreadController::class,'show']);
         Route::delete('/threads/{id}',[ThreadController::class,'destroy']);
+        Route::put('/threads/{id}',[ThreadController::class,'update']);
     });
 
 });
