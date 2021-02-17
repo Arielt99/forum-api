@@ -4,10 +4,43 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Thread extends Model
 {
     use HasFactory;
+
+
+
+    protected static function boot() {
+        parent::boot();
+
+        static::creating(function ($thread) {
+            $thread->slug = Str::slug($thread->title);
+        });
+    }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'channel_id',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 
     /**
      * Get the user that owns the thread.

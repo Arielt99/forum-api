@@ -13,7 +13,7 @@ class ThreadTransformer extends TransformerAbstract
      * @var array
      */
     protected $defaultIncludes = [
-        'user', 'channel'
+        'user'
     ];
 
     /**
@@ -22,7 +22,7 @@ class ThreadTransformer extends TransformerAbstract
      * @var array
      */
     protected $availableIncludes = [
-        //
+        'channel'
     ];
 
     /**

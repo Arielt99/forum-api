@@ -9,7 +9,15 @@ class Channel extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'updated_at',
+        'created_at',
+    ];
 
     /**
      * Get all of the threads of a channel.
