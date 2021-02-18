@@ -61,7 +61,7 @@ class Thread extends Model
      */
     public function sluging()
     {
-        $slug = Str::slug($this->title.$this->id);
+        $slug = Str::slug($this->title." ".$this->id);
 
         $this->slug = $slug;
     }

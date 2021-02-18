@@ -72,12 +72,12 @@ class ThreadController extends Controller
     /**
      * delete a thread.
      *
-     * @param Request $request, $id
+     * @param Request $request, $ThreadId
      * @return Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(Request $request, $ThreadId)
     {
-        $thread = Thread::findOrFail($id);
+        $thread = Thread::findOrFail($ThreadId);
 
         if($request->user()->id != $thread->user_id){
             return response(['errors' => "not your threads"], 403);
@@ -94,10 +94,10 @@ class ThreadController extends Controller
     /**
      * update a thread.
      *
-     * @param Request $request, $id
+     * @param Request $request, $ThreadId
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $ThreadId)
     {
         $request->validate([
             'title' => ['required', 'string','max:255'],
@@ -105,7 +105,7 @@ class ThreadController extends Controller
             'channel_id' => ['required', 'int', 'max:255'],
         ]);
 
-        $thread = Thread::findOrFail($id);
+        $thread = Thread::findOrFail($ThreadId);
 
         if($request->user()->id != $thread->user_id){
             return response(['errors' => "not your threads"], 403);

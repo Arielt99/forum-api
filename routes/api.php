@@ -41,9 +41,9 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::group(['namespace'=>'Thread'], function () {
         Route::get('/threads', [ThreadController::class, 'index']);
         Route::post('/threads', [ThreadController::class, 'store']);
-        Route::get('/threads/{id}',[ThreadController::class,'show']);
-        Route::delete('/threads/{id}',[ThreadController::class,'destroy']);
-        Route::put('/threads/{id}',[ThreadController::class,'update']);
+        Route::get('/threads/{ThreadId}',[ThreadController::class,'show']);
+        Route::delete('/threads/{ThreadId}',[ThreadController::class,'destroy']);
+        Route::put('/threads/{ThreadId}',[ThreadController::class,'update']);
     });
 
     //reply
