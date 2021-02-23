@@ -28,12 +28,12 @@ class ThreadController extends Controller
     /**
      * Display one of the threads.
      *
-     * @param  Request  $request
+     * @param  $ThreadId
      * @return Response
      */
-    public function show($id)
+    public function show($ThreadId)
     {
-        $thread = Thread::findOrFail($id);
+        $thread = Thread::findOrFail($ThreadId);
 
         return fractal($thread, new ThreadTransformer())
         ->includeChannel()
